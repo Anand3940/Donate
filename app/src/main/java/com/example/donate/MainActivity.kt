@@ -1,46 +1,28 @@
 package com.example.donate
 
-import MainActivityPagerAdapter
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.viewpager.widget.ViewPager
+import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import com.example.donate.databinding.ActivityMainBinding
-import com.google.android.material.tabs.TabLayout
-import timber.log.Timber
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var mBinding:ActivityMainBinding
-    private lateinit var mTabLayout: TabLayout
-    private lateinit var mViewPager: ViewPager
-    private lateinit var mMainActivityPagerAdapter: MainActivityPagerAdapter
-
+    private lateinit var binding:ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mBinding= ActivityMainBinding.inflate(layoutInflater)
-        setContentView(mBinding.root)
+        binding= ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+      binding.buttonLogout.setOnClickListener{
+          FirebaseAuth.getInstance().signOut()
+          val intent = Intent(this,Sign_In::class.java)
+          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+          startActivity(intent)
+          finish()
 
-        Timber.plant(Timber.DebugTree())
 
-//        binding.buttonLogout.setOnClickListener{
-//          FirebaseAuth.getInstance().signOut()
-//          val intent = Intent(this,Sign_In::class.java)
-//          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or
-//                  Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-//          startActivity(intent)
-//          finish()
-//      }
-
-        initViews()
+      }
     }
-
-    private fun initViews() {
-        mTabLayout = mBinding.tabLayout
-        mViewPager = mBinding.viewPager
-
-        mMainActivityPagerAdapter = MainActivityPagerAdapter(this, supportFragmentManager)
-        mViewPager.adapter = mMainActivityPagerAdapter
-        mTabLayout.setupWithViewPager(mViewPager)
-    }
-
 }
