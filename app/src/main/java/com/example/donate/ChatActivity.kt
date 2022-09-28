@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import timber.log.Timber
 
 class ChatActivity : AppCompatActivity() {
     private lateinit var messageRecyclerView:RecyclerView
@@ -20,18 +19,23 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var arrayList: ArrayList<Message>
     private lateinit var databaseReference: DatabaseReference
 
-    private var mReceiverUID:String? = null
-    private var mSenderID:String? =null
-    private var name:String?=null
+
+    var recieverRoom:String?=null
+    var senderRoom:String?=null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
-        name=intent.getStringExtra("name")
-        mReceiverUID=intent.getStringExtra("uid")
-        mSenderID=FirebaseAuth.getInstance().currentUser?.uid
+        val intent= Intent()
+        val name=intent.getStringExtra("name")
+        val receiveruid=intent.getStringExtra("uid")
+        val senderuid=FirebaseAuth.getInstance().currentUser?.uid
 
         databaseReference=FirebaseDatabase.getInstance().getReference()
+
+
+
         messageRecyclerView=findViewById(R.id.chat_recycler_view)
         messageBox=findViewById(R.id.message_box)
         sendButton=findViewById(R.id.send_by)
@@ -40,9 +44,9 @@ class ChatActivity : AppCompatActivity() {
 
         messageRecyclerView.layoutManager=LinearLayoutManager(this)
         messageRecyclerView.adapter=messageAdapter
-        mSenderID=mReceiverUID+mSenderID
-        mReceiverUID=mSenderID+mReceiverUID
-        databaseReference.child("Chats").child(mSenderID!!).addValueEventListener(object:ValueEventListener{
+        senderRoom=receiveruid+senderuid
+        recieverRoom=senderuid+receiveruid
+        databaseReference.child("Chats").child(senderRoom!!).addValueEventListener(object:ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 arrayList.clear()
                 for(postsnapshot in snapshot.children){
@@ -61,20 +65,20 @@ class ChatActivity : AppCompatActivity() {
         sendButton.setOnClickListener {
 
         val message=messageBox.text.toString()
-            val messageobjct=Message(message,mSenderID)
+            val messageobjct=Message(message,senderuid)
 
-            databaseReference.child("Chats").child(mSenderID!!).child("messages").push()
+            databaseReference.child("Chats").child(senderRoom!!).child("messages").push()
                 .setValue(messageobjct).addOnSuccessListener {
 
-                    databaseReference.child("Chats").child(mReceiverUID!!).child("messages").push()
+                    databaseReference.child("Chats").child(recieverRoom!!).child("messages").push()
                         .setValue(messageobjct)
                 }
             messageBox.setText("")
         }
     }
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
-    }
+//    override fun onSupportNavigateUp(): Boolean {
+//        onBackPressed()
+//        return true
+//    }
 
 }

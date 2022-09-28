@@ -1,7 +1,6 @@
 package com.example.donate
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +26,6 @@ class MessageAdapter(val context: Context,val messagelist:ArrayList<Message>):Re
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val currentmsg=messagelist[position]
-        Log.e("Dumb Message","Current data:"+messagelist[position])
         if(holder.javaClass==sendViewHolder::class.java){
             val viewHolder=holder as sendViewHolder
             holder.sendMessage.text=currentmsg.message

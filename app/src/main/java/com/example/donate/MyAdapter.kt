@@ -2,7 +2,6 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.donate.Fragments.Camera_Post
 
 import com.example.donate.Fragments.ChatFragment
 import com.example.donate.Fragments.PostFragment
@@ -21,9 +20,6 @@ internal class MyAdapter(
             }
             1 -> {
               PostFragment()
-            }
-            2 ->{
-                Camera_Post()
             }
             else -> getItem(position)
         }

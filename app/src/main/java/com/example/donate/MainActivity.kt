@@ -1,26 +1,25 @@
 package com.example.donate
 
-import MainActivityPagerAdapter
+import MyAdapter
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager
 import com.example.donate.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
-import timber.log.Timber
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var mBinding:ActivityMainBinding
-    private lateinit var mTabLayout: TabLayout
-    private lateinit var mViewPager: ViewPager
-    private lateinit var mMainActivityPagerAdapter: MainActivityPagerAdapter
+    private lateinit var binding:ActivityMainBinding
+    lateinit var tabLayout: TabLayout
+    lateinit var viewPager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mBinding= ActivityMainBinding.inflate(layoutInflater)
-        setContentView(mBinding.root)
-
-        Timber.plant(Timber.DebugTree())
+        binding= ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 //        binding.buttonLogout.setOnClickListener{
 //          FirebaseAuth.getInstance().signOut()
@@ -30,17 +29,21 @@ class MainActivity : AppCompatActivity() {
 //          startActivity(intent)
 //          finish()
 //      }
-
-        initViews()
+        tabLayout = findViewById(R.id.tabLayout)
+        viewPager = findViewById(R.id.viewPager)
+        tabLayout.addTab(tabLayout.newTab().setText("Chat"))
+        tabLayout.addTab(tabLayout.newTab().setText("Post"))
+        tabLayout.tabGravity = TabLayout.GRAVITY_FILL
+        val adapter = MyAdapter(this, supportFragmentManager,
+            tabLayout.tabCount)
+        viewPager.adapter = adapter
+        viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                viewPager.currentItem = tab.position
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
     }
-
-    private fun initViews() {
-        mTabLayout = mBinding.tabLayout
-        mViewPager = mBinding.viewPager
-
-        mMainActivityPagerAdapter = MainActivityPagerAdapter(this, supportFragmentManager)
-        mViewPager.adapter = mMainActivityPagerAdapter
-        mTabLayout.setupWithViewPager(mViewPager)
-    }
-
 }
