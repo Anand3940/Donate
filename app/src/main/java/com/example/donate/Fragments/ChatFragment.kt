@@ -1,6 +1,8 @@
 package com.example.donate.Fragments
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.donate.Fragments.User.User
 import com.example.donate.Fragments.User.User_Adapter
 import com.example.donate.R
+import com.example.donate.Sign_In
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -55,10 +58,10 @@ class ChatFragment : Fragment() {
         return view
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        super.onCreateOptionsMenu(menu, inflater)
-//        inflater.inflate(R.menu.menu,menu)
-//    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu,menu)
+    }
 
 //    override fun onOptionsItemSelected(item: MenuItem): Boolean {
 //        if(item.itemId==R.id.menu_item_share){

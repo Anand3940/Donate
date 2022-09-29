@@ -3,7 +3,6 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.donate.Fragments.Camera_Post
 
 import com.example.donate.Fragments.ChatFragment
 import com.example.donate.Fragments.PostFragment
@@ -20,11 +19,8 @@ internal class MainActivityPagerAdapter(
             0 -> {
                ChatFragment()
             }
-            1-> {
+            else -> {
               PostFragment()
-            }
-            else->{
-                Camera_Post()
             }
         }
     }
@@ -39,6 +35,6 @@ internal class MainActivityPagerAdapter(
 
     companion object {
         @StringRes
-        private val TAB_TITLES = intArrayOf(R.string.tab_chat, R.string.tab_post,R.string.tab_camera)
+        private val TAB_TITLES = intArrayOf(R.string.tab_chat, R.string.tab_post)
     }
 }

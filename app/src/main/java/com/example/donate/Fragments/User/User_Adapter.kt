@@ -9,12 +9,11 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.donate.ChatActivity
-import com.example.donate.Post_Model
 import com.example.donate.R
 import com.google.firebase.auth.FirebaseAuth
 import timber.log.Timber
 
-class User_Adapter(val context: Context, val list: ArrayList<User>):
+class User_Adapter(val context: Context, val list:ArrayList<User>):
     RecyclerView.Adapter<User_Adapter.UserViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -28,7 +27,7 @@ class User_Adapter(val context: Context, val list: ArrayList<User>):
         Timber.e("Current Name: ${currentUser.name}")
         Timber.e("Current Uid: ${currentUser.uid}")
          holder.text_name.setText(currentUser.name)
-         holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener{
             val intent=Intent(context,ChatActivity::class.java)
             intent.putExtra("name",currentUser.name)
             intent.putExtra("uid",currentUser.uid)
