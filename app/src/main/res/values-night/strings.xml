@@ -2,4 +2,6 @@
 <resources>
     <string name="tab_chat">Chat</string>
     <string name="tab_post">Post</string>
+    <string name="tab_camera">Camera</string>
+
 </resources>
