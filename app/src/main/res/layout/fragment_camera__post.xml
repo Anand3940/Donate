@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.Camera_Post">
+
+<ImageView
+    android:layout_width="320dp"
+    android:layout_margin="40dp"
+    android:scaleType="centerCrop"
+    android:elevation="4dp"
+    android:src="@drawable/add"
+    android:id="@+id/firebase_image"
+    android:layout_height="300dp"/>
+
+    <EditText
+    android:layout_width="match_parent"
+    android:id="@+id/name"
+    android:hint="Enter the name"
+    android:layout_height="50dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:id="@+id/Location"
+        android:hint="Enter the Location"
+        android:layout_height="50dp"/>
+    <Button
+        android:id="@+id/upload_image"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:drawableBottom="@drawable/ic_baseline_cloud_upload_24" />
+
+</LinearLayout>
