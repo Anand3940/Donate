@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.UploadTask.TaskSnapshot
+import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -39,6 +41,7 @@ class Camera_Post : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
+        Timber.e("Camera Fragment")
         val view:View =inflater.inflate(R.layout.fragment_camera__post, container, false)
         image=view.findViewById(R.id.firebase_image)
         name=view.findViewById(R.id.name)

@@ -1,16 +1,15 @@
 package com.example.donate.Fragments
-
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.donate.Fragments.User.User
 import com.example.donate.Fragments.User.User_Adapter
+import com.example.donate.Profile_Edit
 import com.example.donate.R
-import com.example.donate.Sign_In
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -30,6 +29,7 @@ class ChatFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         val view:View= inflater.inflate(R.layout.fragment_chat, container, false)
+        val fab = view.findViewById<FloatingActionButton>(R.id.floating_button)
         recyclerView=view.findViewById(R.id.recyclerview)
          mAuth=FirebaseAuth.getInstance()
         recyclerView.layoutManager=LinearLayoutManager(context)
@@ -49,19 +49,23 @@ class ChatFragment : Fragment() {
             }
             adapter.notifyDataSetChanged()
         }
-
         override fun onCancelled(error: DatabaseError) {
             TODO("Not yet implemented")
         }
 
     })
+      fab.setOnClickListener{
+          val intent= Intent(context, Profile_Edit::class.java)
+          startActivity(intent)
+      }
+
         return view
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu,menu)
-    }
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        super.onCreateOptionsMenu(menu, inflater)
+//        inflater.inflate(R.menu.menu,menu)
+//    }
 
 //    override fun onOptionsItemSelected(item: MenuItem): Boolean {
 //        if(item.itemId==R.id.menu_item_share){

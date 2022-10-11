@@ -39,7 +39,6 @@ class PostAdapter
 
         fun bind() {
             val dataItem = mPostList[adapterPosition]
-
             mName.text = dataItem.getname()
             mLocation.text = dataItem.getLocation()
             Picasso.get().load(dataItem.getImage()).into(mImage)
