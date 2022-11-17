@@ -82,7 +82,6 @@ class MessageAdapter:RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind() {
             // Explained above how it works
             val messageItem = mMessageList[adapterPosition]
-
             receiveMessage.text = messageItem.message
         }
     }

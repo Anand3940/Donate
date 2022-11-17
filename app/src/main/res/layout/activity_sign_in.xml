@@ -4,8 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bluebackground"
     tools:context=".Sign_In">
 
+
+    <ImageView
+        android:id="@+id/imagelogo"
+        android:layout_width="219dp"
+        android:layout_height="186dp"
+        android:layout_marginTop="76dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/img_1" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailLayout"
@@ -25,6 +36,7 @@
             android:id="@+id/emailEt"
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
+            android:background="@drawable/whitebackground"
             android:layout_height="wrap_content"
             android:hint="Type your Email"
             android:inputType="textEmailAddress" />
@@ -49,6 +61,7 @@
             android:id="@+id/passET"
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
+            android:background="@drawable/whitebackground"
             android:layout_height="wrap_content"
             android:hint="Type Your Password"
             android:inputType="textPassword" />

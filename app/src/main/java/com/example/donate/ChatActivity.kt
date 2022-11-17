@@ -51,14 +51,20 @@ class ChatActivity : AppCompatActivity() {
 
         // Send new message
         sendButton.setOnClickListener {
-            if(mChatRoomID.isNotEmpty()) {
-                val message = messageBox.text.toString()
-                sendMessage(message)
-            } else {
-                Toast.makeText(this, "Failed to send message!", Toast.LENGTH_SHORT).show()
-                Timber.e("Failed to send message because chat roomID is null.")
+            if(messageBox.text.toString()==null){
+               Toast.makeText(this@ChatActivity,"Not send message",Toast.LENGTH_SHORT).show()
+            }
+            else{
+                if(mChatRoomID.isNotEmpty()) {
+                    val message = messageBox.text.toString()
+                    sendMessage(message)
+                } else {
+                    Toast.makeText(this, "Failed to send message!", Toast.LENGTH_SHORT).show()
+                    Timber.e("Failed to send message because chat roomID is null.")
+                }
             }
         }
+
     }
 
     private fun initAdapter() {
@@ -118,11 +124,5 @@ class ChatActivity : AppCompatActivity() {
         }
     }
 
-
-
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
-    }
 
 }

@@ -58,23 +58,7 @@ class ChatFragment : Fragment() {
           val intent= Intent(context, Profile_Edit::class.java)
           startActivity(intent)
       }
-
         return view
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        super.onCreateOptionsMenu(menu, inflater)
-//        inflater.inflate(R.menu.menu,menu)
-//    }
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if(item.itemId==R.id.menu_item_share){
-//            mAuth.signOut()
-//            val intent = Intent (this@ChatFragment.context, Sign_In::class.java)
-//            startActivity(intent)
-//
-//        }
-//        return true
-//    }
 
 }

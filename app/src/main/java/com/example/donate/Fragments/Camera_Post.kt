@@ -5,7 +5,6 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -25,23 +24,21 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.UploadTask.TaskSnapshot
-import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class Camera_Post : Fragment() {
     var ImageURI: Uri? = null
-   private  lateinit var mRef:DatabaseReference
+    private  lateinit var mRef:DatabaseReference
     private lateinit var mStorage:FirebaseStorage
     private lateinit var mDatabase: FirebaseDatabase
-     lateinit var image:ImageView
-     lateinit var name:EditText
-     lateinit var location:EditText
+    lateinit var image:ImageView
+    lateinit var name:EditText
+    lateinit var location:EditText
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
-        Timber.e("Camera Fragment")
         val view:View =inflater.inflate(R.layout.fragment_camera__post, container, false)
         image=view.findViewById(R.id.firebase_image)
         name=view.findViewById(R.id.name)
@@ -51,14 +48,14 @@ class Camera_Post : Fragment() {
         mRef=mDatabase.getReference().child("Post")
         mStorage=FirebaseStorage.getInstance()
         image.setOnClickListener{
-         selectImage()
+            selectImage()
         }
         val btn2=view.findViewById<Button>(R.id.upload_image)
         btn2.setOnClickListener{
-         uploadImage()
+            uploadImage()
 
         }
-    return view
+        return view
     }
 
     private fun uploadImage() {
@@ -69,15 +66,15 @@ class Camera_Post : Fragment() {
         var na=name.text.toString()
         var locate=location.text.toString()
 
-       var filepath:StorageReference
-       filepath=mStorage.getReference().child("Post").child(ImageURI!!.lastPathSegment.toString())
+        var filepath:StorageReference
+        filepath=mStorage.getReference().child("Post").child(ImageURI!!.lastPathSegment.toString())
         filepath.putFile(ImageURI!!).addOnSuccessListener(object :OnSuccessListener<UploadTask.TaskSnapshot>{
             override fun onSuccess(temp: UploadTask.TaskSnapshot?) {
                 var downloadurl:Task<Uri>
                 downloadurl=temp!!.storage.downloadUrl.addOnCompleteListener(object :OnCompleteListener<Uri>{
                     override fun onComplete(task: Task<Uri>) {
-                       var t:String
-                       t=task.getResult().toString()
+                        var t:String
+                        t=task.getResult().toString()
                         var newpost:DatabaseReference=mRef.push()
                         newpost.child("Name").setValue(na)
                         newpost.child("Location").setValue(locate)
@@ -107,4 +104,5 @@ class Camera_Post : Fragment() {
             image.setImageURI(ImageURI)
         }
     }
+
 }
