@@ -21,11 +21,13 @@ class PostAdapter:RecyclerView.Adapter<PostAdapter.PostViewHolder>(){
     private val mPostList: ArrayList<Post_Model> = ArrayList()
     private lateinit var mDatabase: FirebaseDatabase
     private  lateinit var databaserefernce: DatabaseReference
+    private  lateinit var mContext:Context
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.post_layout,parent,false)
         mDatabase= FirebaseDatabase.getInstance()
+        mContext=parent.context
         databaserefernce=mDatabase.reference.child("Post")
         return PostViewHolder(view)
     }
@@ -55,7 +57,7 @@ class PostAdapter:RecyclerView.Adapter<PostAdapter.PostViewHolder>(){
             val dataItem = mPostList[adapterPosition]
             mName.text = dataItem.getname()
             mLocation.text = dataItem.getLocation()
-            Picasso.get().load(dataItem.getImage())
+            Picasso.with(mContext).load(dataItem.getImage())
                 .fit().centerInside().into(mImage)
         }
 
