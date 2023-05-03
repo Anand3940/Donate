@@ -12,16 +12,16 @@
             android:id="@+id/txt_user_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Demo"
-            android:textSize="30sp"
-            android:layout_marginTop="15dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:text="User_Name"
+            android:textSize="30sp" />
 </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="5dp"
             android:id="@+id/txt_name"
             android:background="@color/black"/>
 

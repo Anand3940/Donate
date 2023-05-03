@@ -43,7 +43,6 @@ class Camera_Post : Fragment() {
         image=view.findViewById(R.id.firebase_image)
         name=view.findViewById(R.id.name)
         location=view.findViewById(R.id.Location)
-
         mDatabase=FirebaseDatabase.getInstance()
         mRef=mDatabase.getReference().child("Post")
         mStorage=FirebaseStorage.getInstance()

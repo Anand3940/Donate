@@ -13,15 +13,15 @@
             android:layout_marginStart="20dp"
             android:layout_height="wrap_content"
             android:text="Name-"
-            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textSize="20sp"
             android:layout_marginLeft="10dp"/>
         <TextView
             android:id="@+id/name_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Demo"
-            android:textSize="30sp"
-            android:textStyle="bold"
+            android:textSize="20sp"
             android:layout_marginLeft="10dp"/>
 
 
@@ -42,7 +42,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginLeft="10dp"
             android:text="Location-"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -69,7 +69,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="5dp"
         android:id="@+id/txt_name"
         android:background="@color/black"/>
 </RelativeLayout>

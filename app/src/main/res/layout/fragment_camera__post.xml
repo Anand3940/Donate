@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@mipmap/blur_app_logo_background"
     android:layout_height="match_parent"
     tools:context=".Fragments.Camera_Post">
 
@@ -27,12 +28,14 @@
         android:id="@+id/Location"
         android:hint="Enter the Location"
         android:layout_height="50dp"/>
+
     <Button
         android:id="@+id/upload_image"
         android:layout_width="wrap_content"
         android:layout_height="51dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:drawableBottom="@drawable/ic_baseline_cloud_upload_24" />
+        android:layout_marginTop="35dp"
+        android:background="@drawable/curve_button"
+        android:text="Submit" />
 
 </LinearLayout>
